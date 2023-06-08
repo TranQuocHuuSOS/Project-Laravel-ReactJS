@@ -5,10 +5,10 @@ import "./Header.css";
 function Header(){
  
     return (
-      <div className="container">
+      <div className="header">
         <div className="desktop-9">
           <div className="image-22" ></div>
-          <Navbar.Brand href="Home" className="dreamhome2">DreamHome</Navbar.Brand>
+          <Navbar.Brand href="/Home" className="dreamhome2">DreamHome</Navbar.Brand>
           <Nav.Link href="Introduce" className="gii-thiu1">Giới thiệu</Nav.Link>
           <Nav.Link href="Co_Living" className="co-living1">Co-Living</Nav.Link>
           <Nav.Link href="#" className="i-tc1">Đối tác</Nav.Link>

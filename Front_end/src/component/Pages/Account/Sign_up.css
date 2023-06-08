@@ -1,0 +1,245 @@
+.group-child22 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--color-tomato); /* Màu đỏ */
+    width: 583px;
+    height: 723px;
+  }
+  
+  .welcome-back {
+    position: absolute;
+    top: 224px;
+    left: 156px;
+  }
+  
+  .to-keep-connected {
+    position: absolute;
+    top: calc(50% - 32px);
+    left: 0;
+  }
+  
+  .with-your-personal {
+    position: absolute;
+    top: calc(50% + 1px);
+    left: 104px;
+  }
+  
+  .to-keep-connected-with-us-plea-parent {
+    position: absolute;
+    top: calc(50% - 63.5px);
+    left: 42px;
+    width: 500px;
+    height: 64px;
+    font-size: var(--font-size-7xl);
+  }
+  
+  .group-child23 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: var(--br-33xl);
+    border: 1px solid var(--color-white);
+    box-sizing: border-box;
+    width: 223px;
+    height: 61px;
+  }
+  
+  .sign-in {
+    position: absolute;
+    top: 15px;
+    left: 59px;
+  }
+  
+  .rectangle-parent13 {
+    position: absolute;
+    top: 426px;
+    left: 173px;
+    width: 223px;
+    height: 61px;
+    font-size: var(--font-size-7xl);
+  }
+  
+  .group-child24,
+  .group-parent19 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 583px;
+    height: 723px;
+    background-color: red;
+  }
+  
+  .group-child24 {
+    background-color: var(--color-white); /* Màu trắng */
+    height: 724px;
+  }
+  
+  .create-account {
+    position: absolute;
+    top: 69px;
+    left: 130px;
+  }
+  
+  .ellipse-icon,
+  .group-icon {
+    position: absolute;
+    top: 140px;
+    left: 170px;
+    width: 65px;
+    height: 65px;
+  }
+  
+  .group-icon {
+    height: 8.98%;
+    width: 11.15%;
+    top: 19.34%;
+    right: 44.6%;
+    bottom: 71.69%;
+    left: 44.25%;
+    max-width: 100%;
+    overflow: hidden;
+    max-height: 100%;
+  }
+  
+  .or-use-your {
+    position: absolute;
+    top: 227px;
+    left: 118px;
+    font-size: var(--font-size-3xl);
+    font-weight: 300;
+    color: var(--color-darkslategray);
+  }
+  
+  .group-parent22 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 583px;
+    height: 724px;
+    font-size: var(--font-size-23xl);
+    color: var(--color-black);
+  }
+  
+  .group-child25 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--color-gainsboro-200); /* Màu xám */
+    width: 390px;
+    height: 68px;
+  }
+  
+  .password {
+    position: absolute;
+    top: 21px;
+    left:  34px;
+    font-weight: 300;
+  }
+  
+  .rectangle-parent15 {
+    position: absolute;
+    top: 398px;
+    left: 108px;
+    width: 390px;
+    height: 68px;
+   
+  }
+  
+  .group-child28,
+  .rectangle-parent16,
+  .rectangle-parent17 {
+    position: absolute;
+    top: 295px;
+    left: 108px;
+    width: 390px;
+    height: 68px;
+  
+  }
+  
+  .group-child28,
+  .rectangle-parent17 {
+    top: 501px;
+  }
+  
+  .group-child28 {
+    top: 0;
+    left: 0;
+    border-radius: var(--br-11xl);
+    background-color: var(--color-tomato); /* Màu đỏ */
+    width: 201px;
+    height: 45px;
+  }
+  
+  .sign-up1 {
+    position: absolute;
+    top: 9px;
+    left: 60px;
+  }
+  
+  .group-parent24,
+  .group-wrapper2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 201px;
+    height: 45px;
+  }
+  
+  .group-wrapper2 {
+    top: 608px;
+    left: 189px;
+    color: var(--color-white);
+    
+  }
+  
+  .group-parent21 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 583px;
+    height: 724px;
+  }
+  
+  .group-child29,
+  .group-parent20 {
+    position: absolute;
+    top: 140px;
+    left: 346px;
+    width: 65px;
+    height: 65px;
+  }
+  
+  .group-parent20 {
+    top: 0;
+    left: 583px;
+    width: 583px;
+    height: 724px;
+    font-size: var(--font-size-3xl);
+    color: var(--color-dimgray-100);
+    background-color: white;
+    border-radius: 1px black;
+  }
+  
+  .group-parent18 {
+    position: absolute;
+    top: 168px;
+    left: 137px;
+    box-shadow: 19px 28px 13px rgba(0, 0, 0, 0.25);
+    width: 1166px;
+    height: 724px;
+  }
+  
+  .sign-up {
+    position: relative;
+    background-color: rgb(255, 165, 165);
+    width: 100%;
+    height: 1060px;
+    overflow: hidden;
+    text-align: left;
+    font-size: var(--font-size-23xl);
+    color: var(--color-white);
+    font-family: var(--font-inter);
+  }
+  
+  

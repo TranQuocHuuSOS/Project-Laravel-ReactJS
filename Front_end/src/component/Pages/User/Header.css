@@ -1,13 +1,15 @@
 
-
+.header{
+  background-color: rgb(255, 47, 47);
+}
 .container {
   position: absolute;
   top: 0;
   left: 0;
   right:0;
-  background-color: rgb(253, 25, 25);
+  background-color: rgb(255, 255, 255);
   width: 1fr;
-  height: 139px;
+  height: auto;
 }
 .dreamhome2 {
   position: absolute;
