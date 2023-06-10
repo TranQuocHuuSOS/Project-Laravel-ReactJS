@@ -18,20 +18,17 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        // $this->call(AddressSeeder::class);
-        // $this->call(UsersSeeder::class);
-        // $this->call(ApartmentSeeder::class);
-        // $this->call(ApartmentImageSeeder::class);
-        // $this->call(ApartmentIssueSeeder::class);
-        // $this->call(AppointmentSeeder::class);
-
-
-        // $this->call(BookApartmentSeeder::class);
-        // $this->call(UpdateApartmentsSeeder::class);
-
-        // $this->call(RatingSeeder::class);
-        // $this->call(ServiceSeeder::class);
-        // $this->call(ContractSeeder::class);
+        $this->call(AddressSeeder::class);
+        $this->call(UsersSeeder::class);
+        $this->call(ApartmentSeeder::class);
+        $this->call(ApartmentImageSeeder::class);
+        $this->call(ApartmentIssueSeeder::class);
+        $this->call(AppointmentSeeder::class);
+        $this->call(UpdateApartmentsSeeder::class);
+        $this->call(BookApartmentSeeder::class);
+        $this->call(RatingSeeder::class);
+        $this->call(ServiceSeeder::class);
+        $this->call(ContractSeeder::class);
         $this->call(ServiceApartmentSeeder::class);
 
 
