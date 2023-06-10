@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react';
 import './Sign_in.css';
 import {Link, useNavigate} from 'react-router-dom';
-import axios from "../../../api/axios";
+import axios from "axios";
 const Sign_in =() =>{
     const[email, setEmail]=useState("");
     const[password, setPassword]= useState("");

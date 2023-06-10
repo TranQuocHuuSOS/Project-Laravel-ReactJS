@@ -1,6 +1,15 @@
+html{
+  scroll-behavior: smooth;
+}
+
 
 .header{
   background-color: rgb(255, 47, 47);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
 }
 .container {
   position: absolute;

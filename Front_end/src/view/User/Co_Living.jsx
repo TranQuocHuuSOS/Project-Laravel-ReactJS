@@ -5,7 +5,7 @@ class Co_Living extends Component {
     render() {
         return (
             <div>
-                
+                dfghjkl;
             </div>
         );
     }

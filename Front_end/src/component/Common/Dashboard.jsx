@@ -1,20 +1,23 @@
 import "./Dashboard.css";
+import React, { Component } from "react";
+import { Navbar, Nav } from 'react-bootstrap';
+import { Container, Form, FormControl, Button} from 'react-bootstrap';
 const Dashboard = () => {
   return (
     <div className="dashboard">
-        <div id="wrapper">
-          <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <div id="wrapper" className="bg-danger">
+          <ul className="navbar-nav bg-danger-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
               <div className="sidebar-brand-icon rotate-n-15">
-                <i className="fas fa-laugh-wink" />
+               
               </div>
-              <div className="sidebar-brand-text mx-3">DREAMHOME </div>
+              <Navbar.Brand href="Dashboard" className="sidebar-brand-text mx-3 ">DREAMHOME </Navbar.Brand>
             </a>
             
-            <hr className="sidebar-divider my-0" />      
+            <hr className="sidebar-divider my-0"/>      
             <li className="nav-item active">
               <a className="nav-link" href="index.html">
-                <i className="fas fa-fw fa-tachometer-alt" />
+                
                 <span>Dashboard</span></a>
             </li>   
             <hr className="sidebar-divider" />  
@@ -23,34 +26,23 @@ const Dashboard = () => {
             </div>
             <li className="nav-item">
               <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <i className="fas fa-fw fa-cog" />
-                <span>Components</span>
+              
+                <Nav.Link href="List_apartment">List_Apartment</Nav.Link>
               </a>
-              <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div className="bg-white py-2 collapse-inner rounded">
-                  <h6 className="collapse-header">Custom Components:</h6>
-                  <a className="collapse-item" href="buttons.html">Buttons</a>
-                  <a className="collapse-item" href="cards.html">Cards</a>
-                </div>
-              </div>
             </li>
           
             <li className="nav-item">
               <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                <i className="fas fa-fw fa-wrench" />
-                <span>Utilities</span>
+                
+                <Nav.Link href="List_seeder">List_Seeder</Nav.Link>
               </a>
-              <div id="collapseUtilities" className="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                <div className="bg-white py-2 collapse-inner rounded">
-                  <h6 className="collapse-header">Custom Utilities:</h6>
-                  <a className="collapse-item" href="utilities-color.html">Colors</a>
-                  <a className="collapse-item" href="utilities-border.html">Borders</a>
-                  <a className="collapse-item" href="utilities-animation.html">Animations</a>
-                  <a className="collapse-item" href="utilities-other.html">Other</a>
-                </div>
-              </div>
             </li>
-            
+            <li className="nav-item">
+              <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+              
+                <Nav.Link href="List_user">List_User</Nav.Link>
+              </a>
+            </li>
             <hr className="sidebar-divider" />
           
             <div className="sidebar-heading">
@@ -59,32 +51,21 @@ const Dashboard = () => {
          
             <li className="nav-item">
               <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                <i className="fas fa-fw fa-folder" />
+                
                 <span>Pages</span>
               </a>
-              <div id="collapsePages" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div className="bg-white py-2 collapse-inner rounded">
-                  <h6 className="collapse-header">Login Screens:</h6>
-                  <a className="collapse-item" href="login.html">Login</a>
-                  <a className="collapse-item" href="register.html">Register</a>
-                  <a className="collapse-item" href="forgot-password.html">Forgot Password</a>
-                  <div className="collapse-divider" />
-                  <h6 className="collapse-header">Other Pages:</h6>
-                  <a className="collapse-item" href="404.html">404 Page</a>
-                  <a className="collapse-item" href="blank.html">Blank Page</a>
-                </div>
-              </div>
+              
             </li>
          
             <li className="nav-item">
               <a className="nav-link" href="charts.html">
-                <i className="fas fa-fw fa-chart-area" />
+                
                 <span>Charts</span></a>
             </li>
             
             <li className="nav-item">
               <a className="nav-link" href="tables.html">
-                <i className="fas fa-fw fa-table" />
+             
                 <span>Tables</span></a>
             </li>
             
@@ -107,7 +88,7 @@ const Dashboard = () => {
                   <div className="input-group">
                     <input type="text" className="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
                     <div className="input-group-append">
-                      <button className="btn btn-primary" type="button">
+                      <button className="btn btn-danger" type="button">
                         <i className="fas fa-search fa-sm" />
                       </button>
                     </div>
@@ -246,35 +227,17 @@ const Dashboard = () => {
                   <li className="nav-item dropdown no-arrow">
                     <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span className="mr-2 d-none d-lg-inline text-gray-600 small">Tran Quoc Huu</span>
-                      <img className="img-profile rounded-circle" src="img/undraw_profile.svg" />
+                      <img className="img-profile rounded-circle" src="https://png.pngtree.com/template/20190716/ourlarge/pngtree-farm-linear-cartoon-logo-design-image_226684.jpg" />
                     </a>
                    
-                    <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                      <a className="dropdown-item" href="#">
-                        <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400" />
-                        Profile
-                      </a>
-                      <a className="dropdown-item" href="#">
-                        <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" />
-                        Settings
-                      </a>
-                      <a className="dropdown-item" href="#">
-                        <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400" />
-                        Activity Log
-                      </a>
-                      <div className="dropdown-divider" />
-                      <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                        <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" />
-                        Logout
-                      </a>
-                    </div>
+                   
                   </li>
                 </ul>
               </nav>        
               <div className="container-fluid">         
                 <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                  <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
-                  <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i className="fas fa-download fa-sm text-white-50" /> Generate Report</a>
+                  <h1 className="h3 mb-0 text-gray-800">Hello Boss</h1>
+                  <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i className="fas fa-download fa-sm text-white-50" /> Generate Report</a>
                 </div>       
                 <div className="row">          
                   <div className="col-xl-3 col-md-6 mb-4">
@@ -283,8 +246,8 @@ const Dashboard = () => {
                         <div className="row no-gutters align-items-center">
                           <div className="col mr-2">
                             <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                              Earnings (Monthly)</div>
-                            <div className="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                              Amount Users</div>
+                            <div className="h5 mb-0 font-weight-bold text-gray-800"></div>
                           </div>
                           <div className="col-auto">
                             <i className="fas fa-calendar fa-2x text-gray-300" />
@@ -299,8 +262,8 @@ const Dashboard = () => {
                         <div className="row no-gutters align-items-center">
                           <div className="col mr-2">
                             <div className="text-xs font-weight-bold text-success text-uppercase mb-1">
-                              Earnings (Annual)</div>
-                            <div className="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                              Amount Apartment</div>
+                            <div className="h5 mb-0 font-weight-bold text-gray-800"></div>
                           </div>
                           <div className="col-auto">
                             <i className="fas fa-dollar-sign fa-2x text-gray-300" />
@@ -314,11 +277,12 @@ const Dashboard = () => {
                       <div className="card-body">
                         <div className="row no-gutters align-items-center">
                           <div className="col mr-2">
-                            <div className="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                            <div className="text-xs font-weight-bold text-info text-uppercase mb-1">
+                              Amount Contract
                             </div>
                             <div className="row no-gutters align-items-center">
                               <div className="col-auto">
-                                <div className="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                <div className="h5 mb-0 mr-3 font-weight-bold text-gray-800"></div>
                               </div>
                               <div className="col">
                                 <div className="progress progress-sm mr-2">
@@ -341,7 +305,7 @@ const Dashboard = () => {
                           <div className="col mr-2">
                             <div className="text-xs font-weight-bold text-warning text-uppercase mb-1">
                               Pending Requests</div>
-                            <div className="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                            <div className="h5 mb-0 font-weight-bold text-gray-800"></div>
                           </div>
                           <div className="col-auto">
                             <i className="fas fa-comments fa-2x text-gray-300" />
@@ -355,8 +319,11 @@ const Dashboard = () => {
                 </div>          
                 <div className="row">              
                 </div>
-              </div>        
-            </div>    
+              </div>  
+             
+               
+            </div>   
+          
             <footer className="sticky-footer bg-white">
               <div className="container my-auto">
                 <div className="copyright text-center my-auto">
