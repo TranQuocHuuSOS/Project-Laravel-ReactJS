@@ -18,7 +18,8 @@
     "react-data-table-component": "^7.5.3",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.2",
-    "react-slideshow-image": "^4.2.1"
+    "react-slideshow-image": "^4.2.1",
+    "sweetalert": "^2.1.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
