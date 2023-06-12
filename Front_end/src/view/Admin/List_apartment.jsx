@@ -14,7 +14,7 @@ class List_apartment extends Component {
       deletingApartmentId: null, 
       error: null,
       isAddFormVisible: false,
-      editingApartmentId: null,
+      apartment_id: null,
       isEditFormVisible: false,
     };
     this.deleteApartments = this.deleteApartments.bind(this);
@@ -64,7 +64,7 @@ class List_apartment extends Component {
       const response = await axios.get(`http://localhost:8000/api/get-apartment/${apartment_id}`);
       const apartmentData = response.data;
       this.setState({
-        editingApartmentId: apartment_id,
+        apartment_id: apartmentData.apartment_id,
         isEditFormVisible: true,
         user_id: apartmentData.user_id,
         description: apartmentData.description,
@@ -79,10 +79,11 @@ class List_apartment extends Component {
       alert("Đã xảy ra lỗi khi lấy dữ liệu căn hộ");
     }
   };
+  
   handleEditSuccess = async () => {
     await this.fetchApartments();
     this.setState({
-      editingApartmentId: null,
+      apartment_id: null,
       isEditFormVisible: false,
     });
   };
@@ -90,7 +91,7 @@ class List_apartment extends Component {
 
 
   render() {
-    const { apartments, deletingApartmentId, error, isAddFormVisible,isEditFormVisible, editingApartmentId  } = this.state;
+    const { apartments, deletingApartmentId, error, isAddFormVisible,isEditFormVisible, apartment_id  } = this.state;
     const columns = [
       {
         name: "Apartment ID",
@@ -169,7 +170,7 @@ class List_apartment extends Component {
           </button>
         </div>
         {isAddFormVisible && <AddApartmentForm onAddSuccess={this.handleAddSuccess} />}
-        {isEditFormVisible && (<EditApartmentForm apartment_id={editingApartmentId}onEditSuccess={this.handleEditSuccess}/>)}
+        {isEditFormVisible && (<EditApartmentForm apartment_id={apartment_id} onEditSuccess={this.handleEditSuccess}/>)}
         <DataTable
           title="Apartment List"
           columns={columns}
