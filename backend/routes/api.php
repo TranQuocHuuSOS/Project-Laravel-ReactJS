@@ -25,3 +25,13 @@ Route::post('/add-apartment',[App\Http\Controllers\APIController::class,'addApar
 Route::delete('/delete-apartment/{apartment_id}', [App\Http\Controllers\APIController::class,'deleteApartments']);
 Route::put('/edit-apartment/{apartment_id}',[App\Http\Controllers\APIController::class,'editApartments']);								          
 Route::post('/upload-image',[App\Http\Controllers\APIController::class,'uploadImage']);
+
+
+
+
+Route::get('/get-address',[App\Http\Controllers\APIController::class,'getAddresses']);					
+Route::get('/get-address/{address_id}', [App\Http\Controllers\APIController::class,'getOneAddresses']);								
+Route::post('/add-address',[App\Http\Controllers\APIController::class,'addAddresses']);								
+Route::delete('/delete-address/{address_id}', [App\Http\Controllers\APIController::class,'deleteAddresses']);
+Route::put('/edit-address/{address_id}',[App\Http\Controllers\APIController::class,'editAddresses']);								          
+Route::post('/upload-image',[App\Http\Controllers\APIController::class,'uploadImage']);

@@ -25,12 +25,11 @@ const Dashboard = () => {
               Interface
             </div>
             <li className="nav-item">
-              <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+              <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
               
-                <Nav.Link href="List_apartment">List_Apartment</Nav.Link>
+                <Nav.Link href="List_user">List_User</Nav.Link>
               </a>
             </li>
-          
             <li className="nav-item">
               <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                 
@@ -38,11 +37,20 @@ const Dashboard = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+              <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
               
-                <Nav.Link href="List_user">List_User</Nav.Link>
+                <Nav.Link href="List_apartment">List_Apartment</Nav.Link>
               </a>
             </li>
+            <li className="nav-item">
+              <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+              
+                <Nav.Link href="List_address">List_Addresses</Nav.Link>
+              </a>
+            </li>
+          
+            
+            
             <hr className="sidebar-divider" />
           
             <div className="sidebar-heading">

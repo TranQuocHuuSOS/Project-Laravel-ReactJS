@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import './EditApartmentForm.css';
 class EditApartmentForm extends Component {
   constructor(props) {
     super(props);
@@ -58,7 +58,7 @@ class EditApartmentForm extends Component {
     } = this.state;
 
     try {
-      await axios.put(`http://localhost:8000/api/update-apartment/${apartment_id}`, {
+      await axios.put(`http://localhost:8000/api/edit-apartment/${apartment_id}`, {
         user_id,
         description,
         price,
@@ -97,6 +97,7 @@ class EditApartmentForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <div>
             <label>User ID:</label>
+            <br/>
             <input
               type="text"
               name="user_id"
@@ -106,6 +107,7 @@ class EditApartmentForm extends Component {
           </div>
           <div>
             <label>Description:</label>
+            <br/>
             <textarea
               name="description"
               value={description}
@@ -114,6 +116,7 @@ class EditApartmentForm extends Component {
           </div>
           <div>
             <label>Price:</label>
+            <br/>
             <input
               type="text"
               name="price"
@@ -122,7 +125,8 @@ class EditApartmentForm extends Component {
             />
           </div>
           <div>
-            <label>Number of Rooms:</label>
+          <label>Number of Rooms:</label>
+            <br/>
             <input
               type="text"
               name="number_room"
@@ -132,6 +136,7 @@ class EditApartmentForm extends Component {
           </div>
           <div>
             <label>Area:</label>
+            <br/>
             <input
               type="text"
               name="area"
@@ -141,6 +146,7 @@ class EditApartmentForm extends Component {
           </div>
           <div>
             <label>Address ID:</label>
+            <br/>
             <input
               type="text"
               name="address_id"
@@ -150,6 +156,7 @@ class EditApartmentForm extends Component {
           </div>
           <div>
             <label>Type of Room:</label>
+            <br/>
             <input
               type="text"
               name="type_room"
@@ -157,6 +164,7 @@ class EditApartmentForm extends Component {
               onChange={this.handleInputChange}
             />
           </div>
+          
           <button type="submit">Save</button>
         </form>
       </div>
