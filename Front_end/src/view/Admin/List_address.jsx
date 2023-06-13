@@ -4,6 +4,7 @@ import DataTable from "react-data-table-component";
 import "bootstrap/dist/css/bootstrap.css";
 import AddAddressForm from "../../component/Pages/AddAddressForm";
 import EditAddressForm from "../../component/Pages/EditAddessForm";
+
 class List_address extends Component {
   constructor(props) {
     super(props);

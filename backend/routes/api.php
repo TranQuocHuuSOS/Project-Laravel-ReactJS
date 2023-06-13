@@ -35,3 +35,11 @@ Route::post('/add-address',[App\Http\Controllers\APIController::class,'addAddres
 Route::delete('/delete-address/{address_id}', [App\Http\Controllers\APIController::class,'deleteAddresses']);
 Route::put('/edit-address/{address_id}',[App\Http\Controllers\APIController::class,'editAddresses']);								          
 Route::post('/upload-image',[App\Http\Controllers\APIController::class,'uploadImage']);
+
+
+
+Route::get('/get-user',[App\Http\Controllers\APIController::class,'getUser']);
+Route::get('/get-user/{id}', [App\Http\Controllers\APIController::class,'getOneUsers']);								
+Route::delete('/delete-user/{id}', [App\Http\Controllers\APIController::class,'deleteUsers']);
+
+

@@ -1,12 +1,11 @@
-<?php							
-							
+<?php													
 namespace App\Http\Controllers;
-
 use App\Models\addresses;
-use App\Models\apartments;							
+use App\Models\apartments;	
+use App\Models\users;
+use App\Models\book_apartments;						
 use Illuminate\Http\Request;							
-use Illuminate\Support\Facades\File;							
-							
+use Illuminate\Support\Facades\File;													
 class APIController extends Controller							
 {							
 public function getApartments()							
@@ -45,27 +44,20 @@ public function deleteApartments($id)
         apartments::findOrFail($id)->ratings()->delete();
         apartments::findOrFail($id)->service_Apartment()->delete();
         apartments::findOrFail($id)->appointments()->delete();
-
-
-
         // Xóa căn hộ
         apartments::findOrFail($id)->delete();
-
         return response()->json(['message' => 'Xóa căn hộ thành công'], 200);
     } catch (\Exception $e) {
         return response()->json(['message' => 'Đã xảy ra lỗi khi xóa căn hộ: ' . $e->getMessage()], 500);
     }
 }
-
-				
 public function editApartments(Request $request, $id)
 {
     try {
         $apartment = apartments::find($id);
-        if (!$apartment) {
+        if (!$apartment){
             return response()->json(['message' => 'Căn hộ không tồn tại'], 404);
         }
-
         $apartment->user_id = intval($request->input('user_id'));
         $apartment->description = $request->input('description');
         $apartment->price = intval($request->input('price'));
@@ -129,13 +121,9 @@ return $addresses;
 public function deleteAddresses($id)
 {
     try {
-        // Xóa các bản ghi trong bảng apartment_images liên quan đến căn hộ
-     
-
-
-        // Xóa căn hộ
+        
+        // Xóa địa chỉ
         addresses::findOrFail($id)->delete();
-
         return response()->json(['message' => 'Xóa địa chỉ thành công'], 200);
     } catch (\Exception $e) {
         return response()->json(['message' => 'Đã xảy ra lỗi khi xóa địa chỉ: ' . $e->getMessage()], 500);
@@ -150,16 +138,90 @@ public function editAddresses(Request $request, $id)
         }
         $address->number = intval($request->input('number'));
         $address->street = $request->input('street');
-       
         $address->ward = $request->input('ward');
         $address->district = $request->input('district');
-       
         $address->save();
         return response()->json(['message'=>'Cập nhật địa chỉ thành công'],200);
     } catch (\Exception $e) {
         return response()->json(['message'=>'Đã xảy ra lỗi khi cập nhật địa chỉ:'. $e->getMessage()], 500);
     }
 }
+
+
+
+
+
+
+
+
+
+
+// user
+
+public function getUser()							
+{							
+$users = users::all();							
+return response()->json($users);							
+}							
+public function getOneUsers($id)							
+{							
+$users = users::find($id);							
+return response()->json($users);							
+}	
+
+public function deleteUsers($id)
+{
+    try {
+         users::findOrFail($id)->apartmentImage()->delete();
+         users::findOrFail($id)->apartmentIssues()->delete();
+         users::findOrFail($id)->contracts()->delete();
+         users::findOrFail($id)->book_Apartments()->delete();
+         users::findOrFail($id)->ratings()->delete();
+         users::findOrFail($id)->service_Apartment()->delete();
+         users::findOrFail($id)->appointments()->delete();
+        // Xóa người dùng
+        users::findOrFail($id)->delete();
+        return response()->json(['message' => 'Xóa người dùng thành công'], 200);
+    } catch (\Exception $e) {
+        return response()->json(['message' => 'Đã xảy ra lỗi khi xóa người dùng: ' . $e->getMessage()], 500);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// book-apartment
+
+
+public function getBookApartment()							
+{							
+$book_apartment = book_apartments::all();							
+return response()->json($book_apartment);							
+}							
+public function getOneBookApartment($id)							
+{							
+$book_apartment = book_apartments::find($id);							
+return response()->json($book_apartment);							
+}	
+
 }							
 							
 							
