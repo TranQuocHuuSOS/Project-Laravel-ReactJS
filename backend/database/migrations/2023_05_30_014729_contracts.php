@@ -20,8 +20,8 @@ return new class extends Migration
             $table->date('end_date');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('apartment_id')->references('apartment_id')->on('apartments');
+            $table->foreign('user_id')->references('id')->on('users') ->onDelete('cascade');
+            $table->foreign('apartment_id')->references('apartment_id')->on('apartments') ->onDelete('cascade');
         });
     }
 

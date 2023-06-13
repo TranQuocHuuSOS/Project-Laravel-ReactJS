@@ -12,8 +12,8 @@ return new class extends Migration
             $table->unsignedBigInteger('apartment_id');
             $table->dateTime('appointment_date_time');
             $table->string('status');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('apartment_id')->references('apartment_id')->on('apartments');
+            $table->foreign('user_id')->references('id')->on('users') ->onDelete('cascade');
+            $table->foreign('apartment_id')->references('apartment_id')->on('apartments') ->onDelete('cascade');
         });
     }
     public function down()

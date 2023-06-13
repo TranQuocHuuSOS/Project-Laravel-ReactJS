@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('type_room');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('address_id')->references('address_id')->on('addresses');
+            $table->foreign('user_id')->references('id')->on('users') ->onDelete('cascade');
+            $table->foreign('address_id')->references('address_id')->on('addresses') ->onDelete('cascade');
         });
     }
 

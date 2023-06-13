@@ -26,10 +26,10 @@ $apartments = new apartments();
 $apartments->user_id = intval($request->input('user_id'));						
 $apartments->description = $request->input('description');							
 $apartments->price = intval($request->input('price'));													
-$apartments->number_room = $request->input('number_room');							
+$apartments->number_room = intval($request->input('number_room'));							
 $apartments->area = intval($request->input('area'));	
 $apartments->address_id = intval($request->input('address_id'));	
-$apartments-> type_room = intval($request->input('type_room'));		
+$apartments-> type_room = $request->input('type_room');		
 $apartments->save();							
 return $apartments;							
 }							
@@ -61,7 +61,7 @@ public function editApartments(Request $request, $id)
         $apartment->user_id = intval($request->input('user_id'));
         $apartment->description = $request->input('description');
         $apartment->price = intval($request->input('price'));
-        $apartment->number_room = $request->input('number_room');
+        $apartment->number_room = intval($request->input('number_room'));
         $apartment->area = intval($request->input('area'));
         $apartment->address_id = intval($request->input('address_id'));
         $apartment->type_room = $request->input('type_room');
@@ -172,13 +172,12 @@ return response()->json($users);
 public function deleteUsers($id)
 {
     try {
-         users::findOrFail($id)->apartmentImage()->delete();
-         users::findOrFail($id)->apartmentIssues()->delete();
-         users::findOrFail($id)->contracts()->delete();
-         users::findOrFail($id)->book_Apartments()->delete();
-         users::findOrFail($id)->ratings()->delete();
-         users::findOrFail($id)->service_Apartment()->delete();
-         users::findOrFail($id)->appointments()->delete();
+         users::findOrFail($id)->apartmentIssue()->delete();
+         users::findOrFail($id)->apartment()->delete();
+         users::findOrFail($id)->contract()->delete();
+         users::findOrFail($id)->book_Apartment()->delete();
+         users::findOrFail($id)->rating()->delete();
+         users::findOrFail($id)->appointment()->delete();
         // Xóa người dùng
         users::findOrFail($id)->delete();
         return response()->json(['message' => 'Xóa người dùng thành công'], 200);
@@ -208,19 +207,9 @@ public function deleteUsers($id)
 
 
 
-// book-apartment
+// seeder
 
 
-public function getBookApartment()							
-{							
-$book_apartment = book_apartments::all();							
-return response()->json($book_apartment);							
-}							
-public function getOneBookApartment($id)							
-{							
-$book_apartment = book_apartments::find($id);							
-return response()->json($book_apartment);							
-}	
 
 }							
 							

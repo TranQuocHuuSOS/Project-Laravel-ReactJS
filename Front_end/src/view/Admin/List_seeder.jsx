@@ -7,27 +7,14 @@ class List_seeder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: [],
-      deletingUserId: null, 
+      users: [], 
       error: null,
      
     };
-    this.deleteUsers = this.deleteUsers.bind(this);
   }
-
   async componentDidMount() {
     await this.fetchUsers();
   }
-
-//   async fetchUsers() {
-//     try {
-//       const response = await axios.get("http://127.0.0.1:8000/api/get-user");
-//       const users = response.data.filter(user => user.role === "Chủ sở hữu");
-//       this.setState({ users: response.data });
-//     } catch (error) {
-//       console.error("Error fetching users:", error);
-//     }
-//   }
 async fetchUsers() {
     try {
       const response = await axios.get("http://127.0.0.1:8000/api/get-user");
@@ -37,36 +24,8 @@ async fetchUsers() {
       console.error("Error fetching users:", error);
     }
   }
-  
-
-  async deleteUsers(id) {
-    const confirmDelete = window.confirm(`Bạn muốn xóa người dùng có ID là ${id}`);
-    
-    if (!confirmDelete) {
-      return;
-    }
-  
-    if (this.state.deletingUserId) {
-      return;
-    }
-  
-    try {
-      this.setState({ deletingUserId: id });
-      await axios.delete(`http://localhost:8000/api/delete-user/${id}`);
-      alert("Xóa người dùng thành công");
-      await this.fetchUsers();
-    } catch (error) {
-      console.log(error);
-      alert("Đã xảy ra lỗi khi xóa người dùng");
-    } finally {
-      this.setState({ deletingUserId: null });
-    }
-  }
-  
- 
-
   render() {
-    const { users, deletingUserId, error, id  } = this.state;
+    const { users,  error, id  } = this.state;
     const columns = [
       {
         name: "ID",
@@ -121,10 +80,10 @@ async fetchUsers() {
             <button
               className="btn btn-sm btn-danger"
               style={{ width: "80px" }}
-              onClick={() => this.deleteUsers(row.id)}
+              onClick={() => this.waitchUsers(row.id)}
               type="button"
             >
-              Delete
+              Xem
             </button>
           </div>
         ),
@@ -137,7 +96,7 @@ async fetchUsers() {
     return (
       <div className="list_apartment" >
         <DataTable
-          title="User List"
+          title="List seeder"
           columns={columns}
           data={this.state.users}
           paginationPerPage={5}
@@ -148,5 +107,4 @@ async fetchUsers() {
     );
   }
 }
-
 export default List_seeder;
