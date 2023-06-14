@@ -1,7 +1,7 @@
 import { useState } from "react"
-import AuthUser from '../AuthUser';
+import AuthUser from './AuthUser';
 
-export default function Sign_in() {
+export default function Login() {
     const {http,setToken} = AuthUser();
     const [email,setEmail] = useState();
     const [password,setPassword] = useState();

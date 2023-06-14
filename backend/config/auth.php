@@ -111,5 +111,7 @@ return [
     */
 
     'password_timeout' => 10800,
-
+    'keys' => [
+        'default' => env('JWT_SECRET'), // Sử dụng khóa JWT_SECRET từ .env
+    ],
 ];

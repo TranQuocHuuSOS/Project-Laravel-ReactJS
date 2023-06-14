@@ -1,19 +1,18 @@
 <?php
-namespace App\Models;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+namespace App\Models;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class users extends Authenticatable implements JWTSubject
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    
     /**
      * The attributes that are mass assignable.
      *
@@ -63,34 +62,4 @@ class users extends Authenticatable implements JWTSubject
     {
         return [];
     }
-    protected $table = 'users';
-    protected $primaryKey = 'id';
-
-    public function rating()
-    {
-        return $this->hasMany('App\Models\ratings', 'user_id');
-    }
-
-    public function contract()
-    {
-        return $this->hasMany('App\Models\contracts', 'user_id');
-    }
-    public function apartment()
-    {
-        return $this->hasMany('App\Models\apartments', 'user_id');
-    }
-    public function book_apartment()
-    {
-        return $this->hasMany('App\Models\book_apartments', 'user_id');
-    }
-    public function appointment()
-    {
-        return $this->hasMany('App\Models\appointments', 'user_id');
-    }
-    public function apartmentIssue()
-    {
-        return $this->hasMany('App\Models\apartmentIssue', 'user_id');
-    }
 }
-
-

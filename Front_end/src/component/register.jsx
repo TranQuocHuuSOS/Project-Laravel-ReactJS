@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
-import AuthUser from '../AuthUser';
+import AuthUser from './AuthUser';
 
-export default function Sign_up() {
+export default function Register() {
     const navigate = useNavigate();
     const {http,setToken} = AuthUser();
     const [username,setUsername] = useState();
@@ -19,7 +19,7 @@ export default function Sign_up() {
         console.log();
         http.post('/register',{username:username,fullname:fullname,email:email,phone:phone, address:address,password:password, birthday:birthday, role:role}).then((res)=>{
             alert("success")
-            navigate('/Sign_in')
+            navigate('/login')
         })
     }
 
