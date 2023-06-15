@@ -17,13 +17,15 @@ return new class extends Migration
             $table->string('fullname');
             $table->string('email')->unique();
             $table->string('phone');
-            $table->string('address');
+            $table->unsignedBigInteger('address_id');
             $table->string('password');
             $table->date('birthday');
-            $table-> string('role');
             $table->timestamps();
+
+            $table->foreign('address_id')->references('address_id')->on('addresses');
         });
     }
+
     /**
      * Reverse the migrations.
      */
@@ -31,5 +33,6 @@ return new class extends Migration
     {
         //
         Schema::dropIfExists('users');
+
     }
 };

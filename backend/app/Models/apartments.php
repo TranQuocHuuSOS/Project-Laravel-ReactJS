@@ -9,10 +9,15 @@ class apartments extends Model
 {
     use HasFactory;
     protected $table ='apartments';
+    protected $primaryKey ='apartment_id';
+
     public function users(){
-        return $this->hasMany('App/users');
+        return $this->belongsTo('App/users');
     }
     public function addresses(){
-        return $this->hasMany('App/addresses');
+        return $this->belongsTo('App/addresses');
+    }
+    public function appointment(){
+        return $this->hasMany('App/appointments');
     }
 }

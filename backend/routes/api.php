@@ -19,9 +19,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/get-apartment',[App\Http\Controllers\APIController::class,'getApartments']);					
-Route::get('/get-apartment/{apartment_id}', [App\Http\Controllers\APIController::class,'getOneApartments']);								
-Route::post('/add-apartment',[App\Http\Controllers\APIController::class,'addApartments']);								
-Route::delete('/delete-apartment/{apartment_id}',[App\Http\Controllers\APIController::class,'deleteApartments']);								
-Route::put('/edit-apartment/{apartment_id}',[App\Http\Controllers\APIController::class,'editApartments']);								          
-Route::post('/upload-image',[App\Http\Controllers\APIController::class,'uploadImage']);
+Route::get('/get-apartment',[APIController::class,'getApartments']);					
+// Route::get('/getUserApartments/{user_id}',[APIController::class,'getUserApartments']);					
+Route::get('/get-apartment/{apartment_id}', [APIController::class,'getOneApartments']);								
+Route::post('/add-apartment',[APIController::class,'addApartments']);								
+Route::delete('/delete-apartment/{apartment_id}',[APIController::class,'deleteApartments']);								
+Route::put('/edit-apartment/{apartment_id}',[APIController::class,'editApartments']);								          
+Route::post('/upload-image',[APIController::class,'uploadImage']);
