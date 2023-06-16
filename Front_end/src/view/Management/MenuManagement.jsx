@@ -8,12 +8,12 @@ class MenuManagement extends Component {
         <aside className="main-sidebar sidebar-dark-primary elevation-4" style={{ height: "200%" }}>
           {/* Brand Logo */}
           <a href="index3.html" className="brand-link">
-            <img
+            {/* <img
               src="dist/img/management.jpg"
               alt="management"
               className="brand-image img-circle elevation-3"
               style={{ opacity: ".8" }}
-            />
+            /> */}
             <span className="brand-text font-weight-light">Management </span>
           </a>
           {/* Sidebar */}

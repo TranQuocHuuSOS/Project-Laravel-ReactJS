@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\addresses;
 use App\Models\apartments;
 use App\Models\users;
-use App\Models\book_apartments;
+// use App\Models\book_apartments;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+// use Illuminate\Support\Facades\File;
 
 class APIController extends Controller
 {
@@ -20,6 +20,8 @@ class APIController extends Controller
     $apartments = apartments::find($id);
     return response()->json($apartments);
   }
+
+
   public function addApartments(Request $request)
   {
     $apartments = new apartments();
