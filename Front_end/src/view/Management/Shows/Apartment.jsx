@@ -1,139 +1,101 @@
 import React, { Component } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
-
-import Swal from "sweetalert";
-import Select from "react-select";
-import $ from "jquery";
-
-// import PropTypes from 'prop-types';
-
-const options = [
-  { value: "a", label: "Phòng ngắn hạn" },
-  { value: "b", label: "Phòng dài hạn" },
-];
+import "bootstrap/dist/css/bootstrap.css";
+import AddApartmentForm from "../../../component/Pages/AddapartmentForm";
+import EditApartmentForm from "../../../component/Pages/EditApartmentForm";
 
 class Apartment extends Component {
   constructor(props) {
     super(props);
     this.state = {
       apartments: [],
+      deletingApartmentId: null, 
+      error: null,
+      isAddFormVisible: false,
+      apartment_id: null,
+      isEditFormVisible: false,
     };
-
-    this.onSubmitHandle = this.onSubmitHandle.bind(this);
     this.deleteApartments = this.deleteApartments.bind(this);
-    this.editApartments = this.editApartments.bind(this)
-    this.submitEditApartments = this.submitEditApartments.bind(this);
   }
 
   async componentDidMount() {
-    await axios.get("http://127.0.0.1:8000/api/get-apartment").then((res) => {
-      this.setState(() => ({ apartments: res.data }));
-    });
+    const userId = 1;
+    await this.fetchApartments(userId);
   }
 
+  
 
-  async onSubmitHandle(e) {
-    e.preventDefault();
-    await axios
-      .post("http://localhost:8000/api/add-apartment", {
-        user_id: $("#inputUser_ID").val(),
-        type_room: $("#inputType_room").val(),
-        area: $("#inputArea").val(),
-        price: $("#inputPrice").val(),
-        number_room: $("#inputNumber_room").val(),
-        description: $("#inputDescription").val(),
-        address_id: $("#inputAddress_id").val(),
-      })
-
-
-      .then((res) => {
-        Swal({
-          text: "Thêm thành công",
-          icon: "success",
-          button: "OK",
-        });
-        $("#closeModalAddBtn").click();
-        this.componentDidMount();
-      })
-      Swal({
-        text: "Thêm không thành công",
-        icon: "success",
-        button: "OK",
-      });
-  }
-
-
-  async submitEditApartments(e) {
-    e.preventDefault();
-
-    await axios
-      .put(`http://localhost:8000/api/edit-apartment/${id}`, {
-        user_id: $("#editUser_ID").val(),
-        type_room: $("#editType_room").val(),
-        area: $("#editArea").val(),
-        price: $("#editPrice").val(),
-        number_room: $("#editNumber_room").val(),
-        description: $("#editDescription").val(),
-        address_id: $("#editAddress_id").val(),
-      })
-      .then(() => {
-        Swal({
-          text: "Chỉnh sửa thành công",
-          icon: "success",
-          button: "OK",
-        });
-        $("#closeModalEditBtn").click();
-        this.componentDidMount();
-      });
-  }
-
-  async editApartments(id) {  // gọi khi người dùng muốn chỉnh sửa một sản phẩm cụ thể
-    let apartment = this.state.apartments.find((apartment) => id === apartment_id.id); // lấy thông tin về sản phẩm từ một mảng products trong trạng thái (state) 
-    $("#editID").val(apartment.id);
-    $("#editUser_ID").val(apartment.user_id);
-    $("#editType_room").val(apartment.type_room);
-    $("#editPrice").val(apartment.price);
-    $("#editArea").val(apartment.area);
-    $("#editNumber_room").val(apartment.number_room);
-    $("#editDescription").val(apartment.description);
-    $("#editAddress_id").val(apartment.address_id);
-  }
-
-
-
-  async deleteApartments(apartment_id) {
-    if (window.confirm(`Bạn muốn xóa sản phẩm có id là ${apartment_id}`)) {
-      try {
-        await axios.delete(
-          `http://localhost:8000/api/delete-apartment/${apartment_id}`,
-          {}
-        );
-        Swal({
-          text: "Xóa thành công",
-          icon: "success",
-          button: "OK",
-        });
-        this.componentDidMount();
-      } catch (error) {
-        console.log(error.response.data)
-        console.error("Error deleting apartment:", error);
-        Swal({
-          text: "Xóa không thành công",
-          icon: "error",
-          button: "OK",
-        });
-      }
-    } else {
-      Swal({
-        text: "Xóa không thành công",
-        icon: "success",
-        button: "OK",
-      });
+  async fetchApartments(userId) {
+    
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/api/get-apartment");
+      const filteredApartments = response.data.filter(apartment => apartment.user_id === userId);
+      this.setState({ apartments: filteredApartments });
+    } catch (error) {
+      console.error("Error fetching apartments:", error);
     }
   }
 
+  async deleteApartments(apartment_id) {
+    if (window.confirm(`Bạn muốn xóa căn hộ có ID là ${apartment_id}`)) {
+      if (this.state.deletingApartmentId) {
+        return; 
+      }
+      try {
+        this.setState({ deletingApartmentId: apartment_id });
+        await axios.delete(`http://localhost:8000/api/delete-apartment/${apartment_id}`);
+        alert("Xóa căn hộ thành công");
+        await this.fetchApartments(); 
+      } catch (error) {
+        console.log(error);
+        alert("Đã xảy ra lỗi khi xóa căn hộ");
+      } finally {
+        this.setState({ deletingApartmentId: null });
+      }
+    }
+  }
+  handleAddNew = () => {
+    this.setState({ isAddFormVisible: true }); 
+  };
+
+  handleAddSuccess = async () => {
+    await this.fetchApartments();
+    this.setState({ isAddFormVisible: false }); 
+  };
+  handleEdit = async (apartment_id) => {
+    try {
+      const response = await axios.get(`http://localhost:8000/api/get-apartment/${apartment_id}`);
+      const apartmentData = response.data;
+      this.setState({
+        apartment_id: apartmentData.apartment_id,
+        isEditFormVisible: true,
+        user_id: apartmentData.user_id,
+        description: apartmentData.description,
+        price: apartmentData.price,
+        number_room: apartmentData.number_room,
+        area: apartmentData.area,
+        address_id: apartmentData.address_id,
+        type_room: apartmentData.type_room
+      });
+    } catch (error) {
+      console.error("Error fetching apartment data:", error);
+      alert("Đã xảy ra lỗi khi lấy dữ liệu căn hộ");
+    }
+  };
+  
+  handleEditSuccess = async () => {
+    await this.fetchApartments();
+    this.setState({
+      apartment_id: null,
+      isEditFormVisible: false,
+    });
+  };
+  
+
+
   render() {
+    const { apartments, deletingApartmentId, error, isAddFormVisible,isEditFormVisible, apartment_id  } = this.state;
     const columns = [
       {
         name: "Apartment ID",
@@ -178,26 +140,19 @@ class Apartment extends Component {
       },
       {
         name: "Action",
-        selector: "apartment_id",
         cell: (row) => (
           <div>
             <button
-            data-tag="allowRowEvents"
-            className="btn btn-sm btn-warning"
-            style={{ width: "60px" }}
-            onClick={() => {
-              this.editProduct(row.apartment_id);
-            }}
-            type="button"
-            data-toggle="modal"
-            data-target="#modelEditProduct"
-          >
-            Edit
-          </button>
+              className="btn btn-sm btn-warning"
+              style={{ width: "80px" }}
+              onClick={() => this.handleEdit(row.apartment_id)}
+              type="button"
+            >
+              Edit
+            </button>
             <button
-              data-tag="allowRowEvents"
               className="btn btn-sm btn-danger"
-              style={{ width: "60px" }}
+              style={{ width: "80px" }}
               onClick={() => this.deleteApartments(row.apartment_id)}
               type="button"
             >
@@ -208,300 +163,29 @@ class Apartment extends Component {
         compact: true,
       },
     ];
-
+    if (error) {
+      return <div>{error}</div>; 
+    }
     return (
-      <div>
-        {/* add product */}
-        <div>
-          <div
-            className="modal fade"
-            id="modelAddApartment"
-            tabIndex={-1}
-            role="dialog"
-            aria-labelledby="modelTitleId"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog" role="document">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title">Modal Add Product</h5>
-                  <button
-                    type="button"
-                    className="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                    id="closeModalAddBtn"
-                  >
-                    <span aria-hidden="true">x</span>
-                  </button>
-                </div>
-                <div className="modal-body">
-                  <form
-                    onSubmit={this.onSubmitHandle}
-                    encType="multipart/form-data"
-                  >
-
-                    <div className="form-group">
-                      <label htmlFor="inputUser_ID">User_ID</label>
-                      <input
-                        type="number"
-                        min={1}
-                        className="form-control"
-                        name="inputUser_ID"
-                        id="inputUser_ID"
-                        placeholder="Enter User_ID"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="inputAddress_id">Address_id</label>
-                      <input
-                        type="number"
-                        min={1}
-                        className="form-control"
-                        name="inputAddress_id"
-                        id="inputAddress_id"
-                        placeholder="Enter Address_id"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="inputAddress_id">Type_room</label>
-                      <Select
-                        options={options}
-                        name="inputType_room"
-                        id="inputType_room"
-                        placeholder="Choose an option"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="inputArea">Area</label>
-                      <input
-                        type="number"
-                        min={1}
-                        className="form-control"
-                        name="inputArea"
-                        id="inputArea"
-                        placeholder="Enter DArea"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="inputPrice">Price</label>
-                      <input
-                        type="number"
-                        min={1}
-                        className="form-control"
-                        name="inputPrice"
-                        id="inputPrice"
-                        placeholder="Enter Price"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="inputNumber_room">Number_room</label>
-                      <input
-                        type="number"
-                        min={1}
-                        className="form-control-file"
-                        name="inputNumber_room"
-                        id="inputNumber_room"
-                        onChange={(e) => this.handleChange(e.target.files)}
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="inputDescription">Description</label>
-                      <input
-                        type="text"
-                        name="inputDescription"
-                        className="form-control"
-                        defaultValue={""}
-                      />
-                    </div>
-
-                    <button type="submit" className="btn btn-primary">
-                      Submit
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* edit product */}
-        <div>
-          <div
-            className="modal fade"
-            id="modelEditProduct"
-            tabIndex={-1}
-            role="dialog"
-            aria-labelledby="modelTitleId"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog" role="document">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title">Modal Edit Product</h5>
-                  <button
-                    type="button"
-                    className="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                    id="closeModalEditBtn"
-                  >
-                    <span aria-hidden="true">x</span>
-                  </button>
-                </div>
-                <div className="modal-body">
-                  <form
-                    onSubmit={this.submitEditApartments}
-                    encType="multipart/form-data"
-                  >
-
-                  <div className="form-group">
-                      <label htmlFor="editID">ID</label>
-                      <input
-                        type="number"
-                        className="form-control"
-                        name="editID"
-                        id="editID"
-                        readOnly
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="editUser_ID">User_ID</label>
-                      <input
-                        type="number"
-                        min={1}
-                        className="form-control"
-                        name="editUser_ID"
-                        id="editUser_ID"
-                        placeholder="Enter User_ID"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="editAddress_id">Address_id</label>
-                      <input
-                        type="number"
-                        min={1}
-                        className="form-control"
-                        name="editAddress_id"
-                        id="editAddress_id"
-                        placeholder="Enter Address_id"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="editAddress_id">Type_room</label>
-                      <Select
-                        options={options}
-                        name="editType_room"
-                        id="editType_room"
-                        placeholder="Choose an option"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="editArea">Area</label>
-                      <input
-                        type="number"
-                        min={1}
-                        className="form-control"
-                        name="editArea"
-                        id="editArea"
-                        placeholder="Enter DArea"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="editPrice">Price</label>
-                      <input
-                        type="number"
-                        min={1}
-                        className="form-control"
-                        name="editPrice"
-                        id="editPrice"
-                        placeholder="Enter Price"
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="editNumber_room">Number_room</label>
-                      <input
-                        type="number"
-                        min={1}
-                        className="form-control-file"
-                        name="editNumber_room"
-                        id="editNumber_room"
-                        onChange={(e) => this.handleChange(e.target.files)}
-                        required
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="editDescription">Description</label>
-                      <input
-                        type="text"
-                        name="editDescription"
-                        className="form-control"
-                        defaultValue={""}
-                      />
-                    </div>
-                    
-                    <button type="submit" className="btn btn-primary">
-                      Submit
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* show Apartment */}
-        <div className="container">
-          <button
-            type="button"
-            data-toggle="modal"
-            data-target="#modelAddApartment"
-            className="btn btn-primary"
-            style={{ width: 150 }}
-          >
-            Add Apartment
+      <div className="list_apartment">
+        <div className="button-container">
+          <button className="btn btn-success" onClick={this.handleAddNew}>
+            Thêm mới căn hộ
           </button>
-
-          <DataTable
-            title=" My Apartment"
-            columns={columns}
-            data={this.state.apartments}
-            paginationPerPage={5}
-            defaultSortField="apartment_id"
-            pagination
-          />
         </div>
+        {isAddFormVisible && <AddApartmentForm onAddSuccess={this.handleAddSuccess} />}
+        {isEditFormVisible && (<EditApartmentForm apartment_id={apartment_id} onEditSuccess={this.handleEditSuccess}/>)}
+        <DataTable
+          title="My Apartment"
+          columns={columns}
+          data={this.state.apartments}
+          paginationPerPage={5}
+          defaultSortField="apartment_id"
+          pagination
+        />
       </div>
     );
   }
 }
-
-// Apartment.propTypes = {
-//   user_id: PropTypes.string.isRequired, // Xác định kiểu và yêu cầu prop user_id
-// };
 
 export default Apartment;

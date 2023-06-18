@@ -18,8 +18,8 @@ return new class extends Migration
             $table->integer('number_rating');
             $table->text('comment')->nullable();
 
-            $table->foreign('apartment_id')->references('apartment_id')->on('apartments');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('apartment_id')->references('apartment_id')->on('apartments') ->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users') ->onDelete('cascade');
         });
     }
 

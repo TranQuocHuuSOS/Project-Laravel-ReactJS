@@ -9,5 +9,7 @@ class addresses extends Model
 {
     use HasFactory;
     protected $table = 'addresses';
+    protected $primaryKey = 'address_id';
 
+    
 }
