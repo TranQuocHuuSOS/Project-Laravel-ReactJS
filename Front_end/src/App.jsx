@@ -42,11 +42,10 @@ import Co_Living from './view/User/Co_Living';
 import Sign_in from './component/Account/Sign_in';
 import Sign_up from './component/Account/Sign_up';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import AuthUser from './component/AuthUser';
-import Guest from './navbar/guest';
-import Auth from './navbar/auth';
 
+import Auth from './navbar/auth';
+import ResetPasswordForm from './component/Account/ResetPasswordPage';
 function App() {
   const {getToken} = AuthUser();
   if(!getToken()){
@@ -59,6 +58,7 @@ function App() {
            <Route path="/Co_Living" element={<Co_Living/>} />
            <Route path="/Sign_in" element={<Sign_in/>} />
            <Route path="/Sign_up" element={<Sign_up/>} />
+           <Route path="/ResetPasswordForm" element={<ResetPasswordForm/>} />
          </Routes>
          <Footer></Footer>
      </div>

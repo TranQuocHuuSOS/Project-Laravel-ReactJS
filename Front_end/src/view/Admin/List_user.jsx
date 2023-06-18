@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
@@ -10,15 +9,12 @@ class List_user extends Component {
       users: [],
       deletingUserId: null, 
       error: null,
-     
     };
     this.deleteUsers = this.deleteUsers.bind(this);
   }
-
   async componentDidMount() {
     await this.fetchUsers();
   }
-
   async fetchUsers() {
     try {
       const response = await axios.get("http://127.0.0.1:8000/api/get-user");
@@ -27,18 +23,14 @@ class List_user extends Component {
       console.error("Error fetching users:", error);
     }
   }
-
   async deleteUsers(id) {
     const confirmDelete = window.confirm(`Bạn muốn xóa người dùng có ID là ${id}`);
-    
     if (!confirmDelete) {
       return;
     }
-  
     if (this.state.deletingUserId) {
       return;
     }
-  
     try {
       this.setState({ deletingUserId: id });
       await axios.delete(`http://localhost:8000/api/delete-user/${id}`);
@@ -51,9 +43,6 @@ class List_user extends Component {
       this.setState({ deletingUserId: null });
     }
   }
-  
- 
-
   render() {
     const { users, deletingUserId, error, id  } = this.state;
     const columns = [
@@ -137,5 +126,4 @@ class List_user extends Component {
     );
   }
 }
-
 export default List_user;

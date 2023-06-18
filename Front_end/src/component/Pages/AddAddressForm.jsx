@@ -95,6 +95,7 @@ class AddAddressForm extends Component{
         <form onSubmit={this.handleSubmit}>
           <div>
             <label>Number:</label>
+            <br/>
             <input
               type="number"
               name="number"

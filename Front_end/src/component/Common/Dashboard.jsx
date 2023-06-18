@@ -1,4 +1,4 @@
-import "./Dashboard.css";
+import "../../assets/style/Dashboard.css";
 import React, { Component } from "react";
 import { Navbar, Nav } from 'react-bootstrap';
 import { Container, Form, FormControl, Button} from 'react-bootstrap';
@@ -24,6 +24,11 @@ const Dashboard = () => {
             <div className="sidebar-heading">
               Interface
             </div>
+            <li className="nav-item">
+              <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                <Nav.Link href="Report">Report</Nav.Link>
+              </a>
+            </li>
             <li className="nav-item">
               <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                 <Nav.Link href="List_user">List_User</Nav.Link>

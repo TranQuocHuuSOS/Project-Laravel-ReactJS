@@ -5,7 +5,8 @@ use App\Models\apartments;
 use App\Models\users;
 use App\Models\book_apartments;						
 use Illuminate\Http\Request;							
-use Illuminate\Support\Facades\File;													
+use Illuminate\Support\Facades\File;	
+use App\Models\Images;												
 class APIController extends Controller							
 {							
 public function getApartments()							
@@ -189,6 +190,8 @@ public function deleteUsers($id)
 
 
 
+
+//image
 
 
 

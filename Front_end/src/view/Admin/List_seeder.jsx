@@ -1,4 +1,4 @@
-import "./List_apartment.css";
+import "../../assets/style/List_apartment.css";
 import React, { Component } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";

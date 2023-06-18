@@ -57,6 +57,6 @@ class apartments extends Model
 
     public function addresses()
     {
-        return $this->belongsTo('App\Models\addresses', 'apartment_id');
+        return $this->belongsTo('App\Models\addresses','apartment_id');
     }
 }

@@ -1,11 +1,9 @@
-
 import React, { Component } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
 import "bootstrap/dist/css/bootstrap.css";
 import AddApartmentForm from "../../component/Pages/AddapartmentForm";
 import EditApartmentForm from "../../component/Pages/EditApartmentForm";
-
 class List_apartment extends Component {
   constructor(props) {
     super(props);
@@ -19,11 +17,9 @@ class List_apartment extends Component {
     };
     this.deleteApartments = this.deleteApartments.bind(this);
   }
-
   async componentDidMount() {
     await this.fetchApartments();
   }
-
   async fetchApartments() {
     try {
       const response = await axios.get("http://127.0.0.1:8000/api/get-apartment");
@@ -32,7 +28,6 @@ class List_apartment extends Component {
       console.error("Error fetching apartments:", error);
     }
   }
-
   async deleteApartments(apartment_id) {
     if (window.confirm(`Bạn muốn xóa căn hộ có ID là ${apartment_id}`)) {
       if (this.state.deletingApartmentId) {
@@ -54,7 +49,6 @@ class List_apartment extends Component {
   handleAddNew = () => {
     this.setState({ isAddFormVisible: true }); 
   };
-
   handleAddSuccess = async () => {
     await this.fetchApartments();
     this.setState({ isAddFormVisible: false }); 
@@ -79,7 +73,6 @@ class List_apartment extends Component {
       alert("Đã xảy ra lỗi khi lấy dữ liệu căn hộ");
     }
   };
-  
   handleEditSuccess = async () => {
     await this.fetchApartments();
     this.setState({
@@ -87,9 +80,6 @@ class List_apartment extends Component {
       isEditFormVisible: false,
     });
   };
-  
-
-
   render() {
     const { apartments, deletingApartmentId, error, isAddFormVisible,isEditFormVisible, apartment_id  } = this.state;
     const columns = [
@@ -183,5 +173,4 @@ class List_apartment extends Component {
     );
   }
 }
-
 export default List_apartment;

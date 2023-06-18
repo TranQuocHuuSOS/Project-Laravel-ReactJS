@@ -21,7 +21,13 @@
     border-radius: 3px;
     width: 100%;
   }
-  
+  .form-container input[type="number"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 100%;
+  }
   .form-container button[type="submit"] {
     padding: 10px 20px;
     

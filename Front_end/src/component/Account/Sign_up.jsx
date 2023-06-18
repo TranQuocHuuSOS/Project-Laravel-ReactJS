@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom';
+// import {Select} from 'react-select';
 import AuthUser from '../AuthUser';
-
+import '../../assets/style/Sign_up.css';
 export default function Sign_up() {
     const navigate = useNavigate();
     const {http,setToken} = AuthUser();
@@ -13,16 +14,19 @@ export default function Sign_up() {
     const [role,setRole] = useState();
     const [email,setEmail] = useState();
     const [password,setPassword] = useState();
-
+    const [isLoading,setIsLoading] = useState();
     const submitForm = () =>{
         // api call
         console.log();
-        http.post('/register',{username:username,fullname:fullname,email:email,phone:phone, address:address,password:password, birthday:birthday, role:role}).then((res)=>{
-            alert("success")
+        setIsLoading (true);
+        // isLoading = true;
+        http.post('/register',
+        {username:username,fullname:fullname,email:email,phone:phone,
+         address:address,password:password, birthday:birthday, role:role}).then((res)=>{
+            alert("You registered successfully!")
             navigate('/Sign_in')
         })
     }
-
     return(
         <div className="row justify-content-left pt-5">
             <div className="col-sm-6">
@@ -72,11 +76,18 @@ export default function Sign_up() {
                     </div>
                     <div className="form-group mt-3">
                         <label>Your role:</label>
-                        <input type="text" className="form-control" placeholder="Enter your role"
+                        {/* <input type="text" className="form-control" placeholder="Enter your role"
                             onChange={e=>setRole(e.target.value)}
-                        id="role" />
+                        id="role" /> */}
+                        <select
+                        className="form-control" value={role} onChange={e => setRole(e.target.value)}>
+                            <option value={'Nguoi cho thue'}>Nguoi cho thue</option>                            
+                            <option value={'Nguoi thue'}>Nguoi thue</option>
+
+                        </select>
                     </div>
-                    <button type="button" onClick={submitForm} className="btn btn-primary mt-4">Register</button>
+                    <button type="button"  onClick={submitForm} className="btn btn-primary mt-4">Register</button>
+                    {isLoading && <div> Loading</div>}
                 </div>
             </div>
         </div>
