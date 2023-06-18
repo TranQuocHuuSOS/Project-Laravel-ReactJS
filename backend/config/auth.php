@@ -17,7 +17,8 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
     ],
-
+  
+    
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -40,6 +41,7 @@ return [
             'driver' => 'jwt',
             'provider' => 'users',
         ],
+        
             'api' => [
                 'driver' => 'jwt',
                 'provider' => 'users',

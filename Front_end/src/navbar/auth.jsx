@@ -28,46 +28,40 @@ function Auth() {
     return (
         <div>
         <div className="header">
-            <nav className="navbar navbar-expand-sm navbar-danger bg-danger">
-                <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/">DreamHome</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/Introduce">Giới thiệu</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/Co_Living">Co_Living</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/Co_Living">Đối tác</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/Co_Living">Tin tức</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/Co_Living">Dịch vụ</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/Co_Living">Loại phòng</Link>
-                    </li>
-
-                    {userdetail && (
-  <>
-    <li className="nav-item">
-      <span className="nav-link">Xin chào, {userdetail.username}</span>
-    </li>
-    <li className="nav-item">
-      <Link className="nav-link" to="/dashboard">Cài đặt</Link>
-    </li>
-    <li className="nav-item">
-      <span role="button" className="nav-link" onClick={logoutUser}>Logout</span>
-    </li>
-  </>
-)}
-
+            <nav className="container-header">
+            <div className="header-logo" >
+                 <Link className="dream" to="/">DreamHome</Link>
+            </div>
+            <div className='header-item'>
+                <ul className="ul-header" >
                     
+                    <li className="nav-item">
+                        <Link className="option" to="/Introduce">Giới thiệu</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="option" to="/Co_Living">Co_Living</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="option" to="/Co_Living">Đối tác</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="option" to="/Co_Living">Tin tức</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="option" to="/Co_Living">Dịch vụ</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="option" to="/Co_Living">Loại phòng</Link>
+                    </li>
+
+                    <li className="nav-item">
+                        <Link className="option" to="/dashboard">Cài đặt</Link>
+                    </li>
+                    <li className="nav-item">
+                        <span role="button" className="logout" onClick={logoutUser}>Đăng xuất</span>
+                    </li>
                 </ul>
+                </div>
             </nav>
             
         </div>
@@ -76,7 +70,7 @@ function Auth() {
             <Route path="/" element={<Home/>} />
             <Route path="/Introduce" element={<Introduce/>} />
             <Route path="/Co_Living" element={<Co_Living/>} />
-            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+            <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
     </div>
     </div>

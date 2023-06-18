@@ -1,7 +1,109 @@
-.navbar-expand-sm{
-    height: 130px;
-    background-color: rgb(255, 47, 47);
+@font-face {
+    font-family: 'Roboto';
+    src: url('/path/to/roboto.woff2') format('woff2'),
+         url('/path/to/roboto.woff') format('woff');
+    /* Thêm các định dạng font khác (nếu có) */
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+html{
+    scroll-behavior: smooth;
+  }
+  
+  
+  .header{
+   
+      
+    background-color: rgb(255, 253, 253);
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+  }
+  .container {
+    margin-top: 80px;
+    top: 0;
+    left: 0;
+    right:0;
+    background-color: rgb(255, 255, 255);
+    width: 1fr;
+    height: auto;
+    font-family: 'Roboto', sans-serif;
+
+  }
+  .header-item .ul-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .ul-header li {
+    padding-left: 60px;
+    padding-top: 45px;
+  }
+
+  .container-header {
+    position: relative;
+    display: flex;
+    background-color: var(--color-white);
+    box-shadow: 0 4px 4px #d9d9d9;
+    width: 100%;
+    height: 139px;
+    overflow: hidden;
+    text-align: left;
+    font-size: var(--font-size-7xl);
+    color: var(--color-black);
+    font-family: 'Roboto';
+    font-size: 22px;
+  }
+  .nav-item .option {
+    text-decoration: none;
+    color: #000000;
+    font-size: 21px;
+    font-weight: bold;
+    
+    font-family: 'Roboto', sans-serif;
 }
-.header{
-    background-color: rgb(255, 47, 47);
+.nav-item {
+    list-style-type: none;
+    
+
 }
+.header-logo{
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+
+    padding-top: 42px;
+    padding-left: 30px;
+
+}
+.header-logo .dream{
+    width: 212px;
+    height: 35px;
+    left: 31px;
+    top: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 35px;
+    /* identical to box height, or 109% */
+    
+    text-align: center;
+    text-decoration-line: underline;
+    
+    color: #DA291C;
+
+}
+
+.logout {
+    background-color: #DA291C  ;
+    color: #ffffff;
+    padding: 10px;
+    font-weight: 550;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+
+}
+
