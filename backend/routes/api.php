@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\EmailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\APIController;	
+use App\Http\Controllers\APIController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -50,5 +53,5 @@ Route::get('/get-appointment',[APIController::class,'getAppointment']);
 Route::get('/get-appointment/{appointment_id}', [APIController::class,'getOneAppointment']);	
 
 //---------------gửi email xạc nhận--------------//
-Route::post('/send-email', [APIController::class, 'sendEmail']);
+Route::get('/send-email', [EmailController::class, 'sendEmail'])->name('sendEmail');
 

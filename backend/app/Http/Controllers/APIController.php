@@ -119,18 +119,6 @@ class APIController extends Controller
     }
 
     //---------- xạc nhận email-------//
-    public function sendEmail(Request $request)
-    {
-        $email = $request->input('email');
-        $message = $request->input('message');
-
-        // Gửi email
-        Mail::raw($message, function ($message) use ($email) {
-            $message->to($email)
-                    ->subject('Thông báo đặt phòng');
-        });
-        return response()->json(['message' => 'Email sent successfully'], 200);
-    }
 
 
 
