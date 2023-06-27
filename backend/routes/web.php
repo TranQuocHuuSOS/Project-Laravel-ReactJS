@@ -1,6 +1,9 @@
 <?php
 
+use App\Mail\Failemail;
+use App\Mail\GuiEmail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +20,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/contact', [ContactController::class, 'create']);
-Route::post('/contact/send', [ContactController::class, 'send'])->name('contact.send');
+
+//------sendmail------------//
+Route::get("/mailsuccessfull", function(Request $request) {
+    $email = $request->input('email');
+    Mail::mailer('mailgun')
+        ->to($email)
+        ->send(new GuiEmail());
+});
+
+Route::get("/failemail", function(Request $request) {
+    $email = $request->input('email');
+    Mail::mailer('mailgun')
+        ->to($email)
+        ->send(new Failemail());
+});

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\ImagesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIController;	
@@ -11,6 +12,10 @@ Route::get('/email/verify', [App\Http\Controllers\AuthController::class, 'verify
 Route::post('/reset-password', [App\Http\Controllers\PasswordResetController::class, 'sendResetLink']);
 Route::post('/confirm-password-reset', [App\Http\Controllers\PasswordResetController::class, 'confirmPasswordReset']);
 Route::get('/verify-email/{token}', [App\Http\Controllers\AuthController::class, 'verifyEmail']);
+Route::get('password/reset', [App\Http\Controllers\PasswordResetController::class, 'confirmPasswordReset'])->name('password.reset');
+// Route::get('/reset-password/{token}/{email}', [App\Http\Controllers\PasswordResetController::class, 'reset'])->name('password.reset');
+Route::get('/reset-password/{token}/{email}', [App\Http\Controllers\PasswordResetController::class, 'reset'])->name('password.reset')->middleware('signed');
+
 
 
 
@@ -69,8 +74,13 @@ Route::put('/edit-appointment/{appointment}',[App\Http\Controllers\ApointmentCon
 ///------------------------- của ĐI nhớ bỏ vô Apointment-------------------------///
 Route::get('/get-confirmappointment',[App\Http\Controllers\ApointmentController::class,'getAppointment']);	
 Route::get('/get-confirmappointment/{appointment_id}', [App\Http\Controllers\ApointmentController::class,'getOneAppointment']);	
+Route::put('update-appointment/{id}', [App\Http\Controllers\ApointmentController::class,'update']);
 
-//---------------gửi email xạc nhận--------------//
-Route::middleware('auth:api')->group(function () {
-    Route::post('/send-email', [App\Http\Controllers\EmailController::class, 'sendEmail'])->name('sendEmail');
-});
+
+Route::get('related-photos/{apartment_id}', [ImagesController::class, 'getRelatedPhotos']);
+Route::post('add-photo/{apartment_id}', [ImagesController::class, 'addPhoto']);
+Route::post('/upload',[ImagesController::class,'upload']);
+
+//-------------------- Address----------------------//
+Route::get('/get-address', [App\Http\Controllers\ApointmentController::class, 'getAddress']);
+Route::get('/get-address/{address_id}', [App\Http\Controllers\ApointmentController::class,'getOneAddress']);		

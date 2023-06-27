@@ -1,0 +1,9 @@
+.confirmation-text {
+  color: green;
+  font-weight: bold;
+}
+
+.cancellation-text {
+  color: red;
+  font-weight: bold;
+}

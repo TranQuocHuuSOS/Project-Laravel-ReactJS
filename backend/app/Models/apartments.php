@@ -50,6 +50,11 @@ class apartments extends Model
         return $this->hasMany('App\Models\service_Apartment', 'apartment_id');
     }
 
+    public function Images()
+    {
+        return $this->hasMany('App\Models\Images', 'apartment_id');
+    }
+
     public function ratings()
     {
         return $this->hasMany('App\Models\ratings', 'apartment_id');

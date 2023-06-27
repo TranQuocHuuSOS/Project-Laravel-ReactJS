@@ -34,12 +34,20 @@
   .edit-apartment-form textarea {
     height: 100px;
   }
+
+  .edit-apartment-form select[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
   
   .edit-apartment-form button[type="submit"] {
     background-color: #007bff;
     color: #fff;
     padding: 10px 20px;
     border: none;
+    margin-top: 20px;
     border-radius: 4px;
     cursor: pointer;
   }

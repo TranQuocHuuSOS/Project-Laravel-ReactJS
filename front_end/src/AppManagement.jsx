@@ -6,10 +6,12 @@ import { Route, Routes } from "react-router-dom";
 import Confirmappointment from "./view/Management/Shows/ConfirmAppointment";
 import Contact from "./view/Management/Shows/Contract";
 import Apartment from "./view/Management/Shows/Apartment";
+import Address from "./view/Management/Shows/Address";
 
 
 function AppManagement() {
   return <div className="Wrapper">
+
 
     <HeaderManagement></HeaderManagement>
     <div className="content-wrapper">
@@ -21,6 +23,7 @@ function AppManagement() {
                   <Route exact path="/confirmappointment" element={< Confirmappointment/>}></Route>
                   <Route path="/contact" element={< Contact/>}></Route>
                   <Route path="/apartment" element={<Apartment user_id="1" />} />
+                  <Route path="/address" element={<Address/>} />
                   </Routes>
               </div>
             </div>     
